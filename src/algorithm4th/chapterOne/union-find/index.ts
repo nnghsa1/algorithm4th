@@ -1,6 +1,9 @@
 export default class UF {
+  private _id: any[];
+  private _count: number;
   constructor() {
-
+    this._id = [];
+    this._count = 0;
   }
 
   /**
@@ -30,7 +33,7 @@ export default class UF {
    * 连通分量的数量
    */
   count() {
-    return 0;
+    return this._count;
   }
 
 }
