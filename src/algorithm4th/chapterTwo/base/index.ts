@@ -24,8 +24,13 @@ class BaseSort {
     console.log(a);
   }
 
-  isSorted() {
-
+  isSorted(a: any[]) {
+    for (let i = 1; i < a.length; i++) {
+      if (a[i] < a[i - 1]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   
