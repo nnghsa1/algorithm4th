@@ -3,10 +3,10 @@ import { BaseSort } from '../base';
 /**
  * 原地归并
  */
-class MergeInSpace {}
+class MergeInSpace { }
 
 /**
- * 自顶向下
+ * 自顶向下归并
  */
 class MergeToDown extends BaseSort {
   aux: any[];
@@ -14,14 +14,34 @@ class MergeToDown extends BaseSort {
     super();
     this.aux = [];
   }
-  merge() {
+  merge(a: any[], lo: number, middle: number, hi: number) {
+    let i = lo;
+    let j = middle + 1;
 
-  }
-  sort() {
+    for (let k = i; k <= hi; k++) {
+      this.aux[k] = a[k];
+    }
 
+    for (let k = i; k <= hi; k++) {
+      if (i > middle) {
+        a[k] = this.aux[j++];
+      } else if (j > hi) {
+        a[k] = this.aux[i++];
+      } else if (this.aux[j] < this.aux[i]) {
+        a[k] = this.aux[j++];
+      } else {
+        a[k] = this.aux[i++];
+      }
+    }
   }
-  _sort(){
-    
+
+  sort(a: any[]) {
+    const len = a.length;
+    for (let i = 1; i < len; i += i) {
+      for (let j = 0; j < len - i; j += 2 * i) {
+        this.merge(a, j, j + i - 1, Math.min(j + i + i - 1, len - 1));
+      }
+    }
   }
 }
 
@@ -48,7 +68,7 @@ class MergeToUp extends BaseSort {
         a[k] = this.aux[j++];
       } else if (j > hi) {
         a[k] = this.aux[i++];
-      } else if (a[j] < a[i]) {
+      } else if (this.aux[j] < this.aux[i]) {
         a[k] = this.aux[j++];
       } else {
         a[k] = this.aux[i++];
@@ -75,13 +95,17 @@ class MergeToUp extends BaseSort {
  */
 export default class Merge extends BaseSort {
   mergeToUp: MergeToUp | undefined;
+  mergeToDown: MergeToDown | undefined;
   constructor() {
     super();
     this.mergeToUp = new MergeToUp();
+    this.mergeToDown = new MergeToDown();
   }
   sort(a: any[]) {
     if (this.mergeToUp) {
       this.mergeToUp.sort(a);
+    } if (this.mergeToDown) {
+      this.mergeToDown.sort(a);
     }
   }
 }
