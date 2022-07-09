@@ -1,1 +1,2 @@
-import "./chapterOne/union-find"
+// import "./chapterOne/union-find"
+import "./chapterTwo/index.ts"
