@@ -5,7 +5,11 @@
 import Merge from './merge';
 
 (function () {
-  const a = [3, 9, 1, 8, 3, 9, 0, 7, 7, 0];
+  const a = [];
+
+  for (let i = 0; i < 20; i++) {
+    a.push(Math.floor(Math.random() * 20));
+  }
 
   console.log('a', a);
   // const sort = new Selection();
