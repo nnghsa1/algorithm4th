@@ -1,8 +1,8 @@
 // import { Insertion } from './Insertion';
 // import { Selection } from './selection';
 // import Shell from './shell';
-
-import Merge from './merge';
+// import Merge from './merge';
+import QuickSort from './quick';
 
 (function () {
   const a = [];
@@ -15,7 +15,8 @@ import Merge from './merge';
   // const sort = new Selection();
   // const sort = new Insertion();
   // const sort = new Shell();
-  const sort = new Merge();
+  // const sort = new Merge();
+  const sort = new QuickSort();
   sort.sort(a);
   sort.show(a);
 })();
