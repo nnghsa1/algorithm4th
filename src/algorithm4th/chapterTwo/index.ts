@@ -2,10 +2,12 @@
 // import { Selection } from './selection';
 // import Shell from './shell';
 
-import Merge from "./merge";
+import Merge from './merge';
 
 (function () {
-  const a = [6, 7, 1, 2, 5, 8, 3, 4];
+  const a = [3, 9, 1, 8, 3, 9, 0, 7, 7, 0];
+
+  console.log('a', a);
   // const sort = new Selection();
   // const sort = new Insertion();
   // const sort = new Shell();
