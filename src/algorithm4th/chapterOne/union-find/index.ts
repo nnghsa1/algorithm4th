@@ -51,7 +51,7 @@ class WeightQuickUnion extends QuickUnion {
     super(id);
     this.size = [];
     id.forEach((id, index) => {
-      this.size.push(1);
+      this.size.push (1);
     });
   }
   union(p: number, q: number) {

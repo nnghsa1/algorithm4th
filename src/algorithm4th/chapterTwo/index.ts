@@ -4,7 +4,7 @@
 // import Merge from './merge';
 import { QuickSort } from './quick';
 
-(function () {
+(function() {
   const a = [];
 
   for (let i = 0; i < 20; i++) {
