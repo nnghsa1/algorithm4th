@@ -2,7 +2,7 @@
 // import { Selection } from './selection';
 // import Shell from './shell';
 // import Merge from './merge';
-import QuickSort from './quick';
+import { QuickSort } from './quick';
 
 (function () {
   const a = [];
