@@ -1,17 +1,19 @@
 class QuickFind {
-  id: any[];
-  constructor(id: any[]) {
+  public id: any[];
+  public constructor(id: any[]) {
     this.id = id;
   }
-  find(p: number) {
+  public find(p: number) {
     return this.id[p];
   }
 
-  union(p: number, q: number) {
+  public union(p: number, q: number) {
     const pId = this.find(p);
     const qId = this.find(q);
 
-    if (pId === qId) return;
+    if (pId === qId) {
+      return;
+    }
 
     for (let i = 0; i < this.id.length; i++) {
       if (pId === this.id[i]) {
@@ -22,22 +24,25 @@ class QuickFind {
 }
 
 class QuickUnion {
-  id: any[];
-  constructor(id: any[]) {
+  public id: any[];
+  public constructor(id: any[]) {
     this.id = id;
   }
-  union(p: number, q: number) {
+  public union(p: number, q: number) {
     const pRoot = this.find(p);
     const qRoot = this.find(q);
-    if (pRoot === qRoot) return;
+    if (pRoot === qRoot) {
+      return;
+    }
     this.id[pRoot] = qRoot;
   }
 
-  find(p: number) {
-    while (p !== this.id[p]) {
-      p = this.id[p];
+  public find(p: number) {
+    let _p = p;
+    while (_p !== this.id[_p]) {
+      _p = this.id[_p];
     }
-    return p;
+    return _p;
   }
 }
 
@@ -46,18 +51,20 @@ class QuickUnion {
  * 详细见 144页
  */
 class WeightQuickUnion extends QuickUnion {
-  size: any[];
-  constructor(id: any[]) {
+  public size: any[];
+  public constructor(id: any[]) {
     super(id);
     this.size = [];
-    id.forEach((id, index) => {
-      this.size.push (1);
+    id.forEach(() => {
+      this.size.push(1);
     });
   }
-  union(p: number, q: number) {
+  public union(p: number, q: number) {
     const i = this.find(p);
     const j = this.find(q);
-    if (i === j) return;
+    if (i === j) {
+      return;
+    }
     if (this.size[i] < this.size[j]) {
       this.id[i] = j;
       this.size[j] += this.size[i];
@@ -72,8 +79,8 @@ class WeightQuickUnion extends QuickUnion {
  * 路径压缩的加权quick-union
  */
 class PathCompressWeightQuickUinon extends WeightQuickUnion {
-  root: any[];
-  constructor(id: any) {
+  public root: any[];
+  public constructor(id: any) {
     super(id);
     this.root = [];
     this.id.forEach((id, index) => {
@@ -84,24 +91,25 @@ class PathCompressWeightQuickUinon extends WeightQuickUnion {
     });
   }
 
-  find(p: number) {
-    while (p !== this.id[p]) {
-      const temp = this.id[p];
-      this.id[p] = this.id[this.id[p]];
-      p = temp;
+  public find(p: number) {
+    let _p = p;
+    while (_p !== this.id[_p]) {
+      const temp = this.id[_p];
+      this.id[_p] = this.id[this.id[_p]];
+      _p = temp;
     }
-    return p;
+    return _p;
   }
 }
 
 export default class UF {
-  private _id: any[];
+  public _id: any[];
+  public quickFind: QuickFind | undefined;
+  public quickUnion: QuickFind | undefined;
+  public weightQuickUnion: QuickFind | undefined;
+  public pathCompressWeightQuickUinon: PathCompressWeightQuickUinon | undefined;
   private _count: number;
-  quickFind: QuickFind | undefined;
-  quickUnion: QuickFind | undefined;
-  weightQuickUnion: QuickFind | undefined;
-  pathCompressWeightQuickUinon: PathCompressWeightQuickUinon | undefined;
-  constructor(num: number) {
+  public constructor(num: number) {
     this._id = [];
     this._count = 0;
 
@@ -112,13 +120,15 @@ export default class UF {
     // this.quickFind = new QuickFind(this._id);
     // this.quickUnion = new QuickUnion(this._id);
     // this.weightQuickUnion = new WeightQuickUnion(this._id);
-    this.pathCompressWeightQuickUinon = new PathCompressWeightQuickUinon(this._id);
+    this.pathCompressWeightQuickUinon = new PathCompressWeightQuickUinon(
+      this._id,
+    );
   }
 
   /**
    * 在p和q之间添加一条连接
    */
-  unoin(p: number, q: number) {
+  public unoin(p: number, q: number) {
     if (this.quickFind) {
       this.quickFind.union(p, q);
     } else if (this.quickUnion) {
@@ -133,13 +143,13 @@ export default class UF {
   /**
    * p（0 到 N-1）所在的分量的标识符
    */
-  find(p: number) {
+  public find(p: number) {
     let res;
     if (this.quickFind) {
       res = this.quickFind.find(p);
     } else if (this.quickUnion) {
       res = this.quickUnion.find(p);
-    } else if (this.weightQuickUnion){
+    } else if (this.weightQuickUnion) {
       res = this.weightQuickUnion.find(p);
     } else {
       res = this.pathCompressWeightQuickUinon?.find(p);
@@ -152,7 +162,7 @@ export default class UF {
    * @param p
    * @param q
    */
-  connected(p: number, q: number) {
+  public connected(p: number, q: number) {
     const resP = this.find(p);
     const resQ = this.find(q);
     return resP === resQ;
@@ -161,11 +171,11 @@ export default class UF {
   /**
    * 连通分量的数量
    */
-  count() {
+  public count() {
     return this._count;
   }
 
-  getIds() {
+  public getIds() {
     return this._id;
   }
 }
@@ -187,7 +197,7 @@ const getParams = (i: number) => {
   return a[i];
 };
 
-(function () {
+(function() {
   const num = 10;
   const uf = new UF(num);
 
@@ -199,7 +209,7 @@ const getParams = (i: number) => {
       continue;
     }
     uf.unoin(p, q);
-    console.log(q, '-', p);
+    console.log(q, "-", p);
   }
 
   console.log(uf.getIds());
@@ -208,8 +218,8 @@ const getParams = (i: number) => {
     test2 = 4;
   const res = uf.connected(test1, test2);
   if (res) {
-    console.log('相通');
+    console.log("相通");
   } else {
-    console.log('不相通');
+    console.log("不相通");
   }
 })();

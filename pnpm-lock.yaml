@@ -20,6 +20,7 @@ dependencies:
   '@types/node': registry.npmmirror.com/@types/node/16.11.43
   '@types/react': registry.npmmirror.com/@types/react/18.0.15
   '@types/react-dom': registry.npmmirror.com/@types/react-dom/18.0.6
+  eslint: registry.npmmirror.com/eslint/8.19.0
   husky: registry.npmmirror.com/husky/8.0.1
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -29,7 +30,6 @@ dependencies:
 devDependencies:
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.30.6_6zdoc3rn4mpiddqwhppni2mnnm
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.30.5_4x5o4skxv6sl53vpwefgt23khm
-  eslint: registry.npmmirror.com/eslint/8.19.0
   eslint-plugin-react: registry.npmmirror.com/eslint-plugin-react/7.30.1_eslint@8.19.0
 
 packages:

@@ -5,7 +5,7 @@ import { BaseSort } from "../base";
  */
 class Insertion extends BaseSort {
 
-  sort(a: any) {
+  public sort(a: any) {
     const len = a.length;
     for (let i = len - 1; i >= 0; i--) {
       for (let j = 0; j < i; j++) {
@@ -18,5 +18,5 @@ class Insertion extends BaseSort {
 }
 
 export {
-  Insertion
-}
+  Insertion,
+};

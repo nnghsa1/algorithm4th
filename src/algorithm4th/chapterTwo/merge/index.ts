@@ -4,13 +4,13 @@ import { BaseSort } from '../base';
  * 原地归并
  */
 class MergeInSpace extends BaseSort {
-  aux: any[];
-  constructor() {
+  public aux: any[];
+  public constructor() {
     super();
     this.aux = [];
   }
 
-  filp(a: any[], lo: number, hi: number) {
+  public filp(a: any[], lo: number, hi: number) {
     let i = lo;
     let j = hi;
     while (i <= j) {
@@ -20,7 +20,7 @@ class MergeInSpace extends BaseSort {
     }
   }
 
-  merge(a: any[], lo: number, middle: number, hi: number) {
+  public merge(a: any[], lo: number, middle: number, hi: number) {
     let i = lo;
     let j = middle + 1;
 
@@ -38,7 +38,7 @@ class MergeInSpace extends BaseSort {
         i++;
       } else if (a[i] > a[j]) {
         // 使用手摇算法
-        let afterStart = j;
+        const afterStart = j;
 
         let afterEnd = j;
         while (j <= hi && a[j] <= a[i]) {
@@ -58,7 +58,7 @@ class MergeInSpace extends BaseSort {
     }
   }
 
-  sort(a: any[]) {
+  public sort(a: any[]) {
     const len = a.length;
     /**
      * lo   表示每一个子串的起始下标
@@ -80,12 +80,12 @@ class MergeInSpace extends BaseSort {
  * 自顶向下归并
  */
 class MergeToDown extends BaseSort {
-  aux: any[];
-  constructor() {
+  public aux: any[];
+  public constructor() {
     super();
     this.aux = [];
   }
-  merge(a: any[], lo: number, middle: number, hi: number) {
+  public merge(a: any[], lo: number, middle: number, hi: number) {
     let i = lo;
     let j = middle + 1;
 
@@ -106,7 +106,7 @@ class MergeToDown extends BaseSort {
     }
   }
 
-  sort(a: any[]) {
+  public sort(a: any[]) {
     const len = a.length;
     for (let i = 1; i < len; i += i) {
       for (let j = 0; j < len - i; j += 2 * i) {
@@ -120,13 +120,13 @@ class MergeToDown extends BaseSort {
  * 自底向上
  */
 class MergeToUp extends BaseSort {
-  aux: any[];
-  constructor() {
+  public aux: any[];
+  public constructor() {
     super();
     this.aux = [];
   }
 
-  merge(a: any[], lo: number, middle: number, hi: number) {
+  public merge(a: any[], lo: number, middle: number, hi: number) {
     let i = lo;
     let j = middle + 1;
 
@@ -147,13 +147,13 @@ class MergeToUp extends BaseSort {
     }
   }
 
-  sort(a: any[]) {
+  public sort(a: any[]) {
     this.aux = new Array(a.length);
     this._sort(a, 0, a.length - 1);
   }
 
-  _sort(a: any[], i: number, j: number) {
-    if (j <= i) return;
+  protected _sort(a: any[], i: number, j: number) {
+    if (j <= i) { return; }
     const middle = Math.floor((i + j) / 2);
     this._sort(a, 0, middle);
     this._sort(a, middle + 1, j);
@@ -165,16 +165,16 @@ class MergeToUp extends BaseSort {
  * 归并排序
  */
 export default class Merge extends BaseSort {
-  mergeToUp: MergeToUp | undefined;
-  mergeToDown: MergeToDown | undefined;
-  mergeInSpace: MergeInSpace | undefined;
-  constructor() {
+  public mergeToUp: MergeToUp | undefined;
+  public mergeToDown: MergeToDown | undefined;
+  public mergeInSpace: MergeInSpace | undefined;
+  public constructor() {
     super();
     // this.mergeToUp = new MergeToUp();
     // this.mergeToDown = new MergeToDown();
     this.mergeInSpace = new MergeInSpace();
   }
-  sort(a: any[]) {
+  public sort(a: any[]) {
     if (this.mergeToUp) {
       this.mergeToUp.sort(a);
     } else if (this.mergeToDown) {

@@ -1,10 +1,10 @@
 
 class BaseSort {
-  sort(a: any[]) {
-
+  public sort(a: any[]) {
+    console.log('a: ', a);
   }
 
-  less() {
+  public less() {
     return false;
   }
 
@@ -14,17 +14,17 @@ class BaseSort {
    * @param i 
    * @param j 
    */
-  exch(a: any[], i: number, j: number) {
+   public exch(a: any[], i: number, j: number) {
     const temp = a[i];
     a[i] = a[j];
     a[j] = temp;
   }
 
-  show(a: any[]) {
+  public show(a: any[]) {
     console.log(a);
   }
 
-  isSorted(a: any[]) {
+  public isSorted(a: any[]) {
     for (let i = 1; i < a.length; i++) {
       if (a[i] < a[i - 1]) {
         return false;
@@ -36,5 +36,5 @@ class BaseSort {
   
 }
 export {
-  BaseSort
-}
+  BaseSort,
+};

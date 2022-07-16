@@ -1,7 +1,7 @@
 import { BaseSort } from '../base';
 
 export default class Shell extends BaseSort {
-  sort(a: any[]) {
+  public sort(a: any[]) {
     const len = a.length;
     let h = 1;
     while (h < len / 3) {

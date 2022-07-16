@@ -1,1 +1,1 @@
-import "./chapterTwo/index.ts"
+import "./chapterTwo/index.ts";

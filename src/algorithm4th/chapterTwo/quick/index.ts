@@ -1,22 +1,13 @@
 import { BaseSort } from '../base';
 
 class QuickSort extends BaseSort {
-  sort(a: any[]) {
+  public sort(a: any[]) {
     const lo = 0;
     const hi = a.length - 1;
     this._sort(a, lo, hi);
   }
 
-  _sort(a: any[], lo: number, hi: number) {
-    if (lo >= hi) {
-      return;
-    }
-    const j = this.partition(a, lo, hi);
-    this._sort(a, lo, j - 1);
-    this._sort(a, j + 1, hi);
-  }
-
-  partition(a: any[], lo: number, hi: number) {
+  public partition(a: any[], lo: number, hi: number) {
     let i = lo;
     let j = hi;
     let flag = lo;
@@ -36,13 +27,22 @@ class QuickSort extends BaseSort {
 
     return flag;
   }
+
+  protected _sort(a: any[], lo: number, hi: number) {
+    if (lo >= hi) {
+      return;
+    }
+    const j = this.partition(a, lo, hi);
+    this._sort(a, lo, j - 1);
+    this._sort(a, j + 1, hi);
+  }
 }
 
 /**
  * 三向切分快速排序，适用于含有大量重复元素的数组
  */
 class QuickSort3way extends QuickSort {
-  partition(a: any[], lo: number, hi: number) {
+  public partition(a: any[], lo: number, hi: number) {
     let i = lo;
     let j = hi;
     let flag = lo;
@@ -63,8 +63,8 @@ class QuickSort3way extends QuickSort {
     return flag;
   }
 
-  _sort(a: any[], lo: number, hi: number) {
-    if (hi <= lo) return;
+  protected _sort(a: any[], lo: number, hi: number) {
+    if (hi <= lo) { return; }
     let lt = lo,
       i = lo + 1,
       gt = hi;
