@@ -4,10 +4,6 @@ class BaseSort {
     console.log('a: ', a);
   }
 
-  public less() {
-    return false;
-  }
-
   /**
    * 交换数组a的i，j位置 
    * @param a 
