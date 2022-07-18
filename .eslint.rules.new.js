@@ -121,7 +121,7 @@ module.exports = {
         // 禁止除法操作符显式的出现在正则表达式开始的位置
         'no-div-regex': 2,
         // 禁止 if 语句中有 return 之后有 else
-        'no-else-return': 0,
+        'no-else-return': 2,
         // 禁止出现空函数.如果一个函数包含了一条注释，它将不会被认为有问题。
         'no-empty-function': 0,
         // 禁止使用空解构模式no-empty-pattern
@@ -319,7 +319,7 @@ module.exports = {
         ],
         // 要求在注释周围有空行 ( 要求在块级注释之前有一空行)
         'lines-around-comment': [
-            0,
+            2,
             {
                 beforeBlockComment: true,
             },
@@ -1022,8 +1022,8 @@ module.exports = {
          * 类的成员之间是否需要空行
          * @reason 有时为了紧凑需要挨在一起，有时为了可读性需要空一行
          */
-        'lines-between-class-members': 0,
-        '@typescript-eslint/lines-between-class-members': 0,
+        'lines-between-class-members': 2,
+        '@typescript-eslint/lines-between-class-members': 2,
         /**
          * 指定类成员的排序规则
          * @reason 优先级：

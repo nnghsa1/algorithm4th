@@ -24,7 +24,7 @@ module.exports = {
             },
         },
     },
-    extends: ['eslint:recommended', 'plugin:react/recommended'],
+    extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
     // 环境定义了预定义的全局变量。
     env: {
         // 环境定义了预定义的全局变量。更多在官网查看
