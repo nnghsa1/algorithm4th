@@ -3,7 +3,7 @@
 const rules = require('./.eslint.rules.new');
 
 const baseRules = Object.assign(rules.base, rules.import, rules.react, rules.reactHooks);
-const basePlugins = ['react', 'react-hooks', 'import'];
+const basePlugins = ['react', 'react-hooks', 'import', 'prettier'];
 const extensions = ['.js', '.jsx'];
 
 module.exports = {
