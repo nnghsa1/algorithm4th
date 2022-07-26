@@ -1,8 +1,11 @@
 class Key {
   public key: string;
 
+  private _hasCode?: number;
+
   public constructor(key: string) {
     this.key = key;
+    this._hasCode = undefined;
   }
 
   public compareTo(other: Key): number {
@@ -15,6 +18,19 @@ class Key {
       res = 1;
     }
     return res;
+  }
+
+  public hashCode() {
+    if (this._hasCode) {
+      return this._hasCode;
+    }
+    let hash = 0;
+    let i = 0;
+    while (i < this.key.length) {
+      hash = hash * 31 + this.key.charCodeAt(i);
+      i++;
+    }
+    return hash;
   }
 }
 

@@ -1,0 +1,2 @@
+class LinearProbingHashST {}
+export { LinearProbingHashST };
