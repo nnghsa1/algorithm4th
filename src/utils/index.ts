@@ -32,6 +32,17 @@ class Key {
     }
     return hash;
   }
+
+  public equals(other: Key) {
+    return this.key === other.key;
+  }
 }
 
-export { Key };
+class Value {
+  public value: any;
+
+  public constructor(value: any) {
+    this.value = value;
+  }
+}
+export { Key, Value };
