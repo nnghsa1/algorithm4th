@@ -43,6 +43,16 @@ class DiGraph implements IGraph {
   public toString() {
     return JSON.stringify(this);
   }
+
+  public reverse(): DiGraph {
+    const R = new DiGraph(this._V);
+    for (let i = 0; i < this._V; i++) {
+      this.adj(i).forEach(w => {
+        R.addEdge(w, i);
+      });
+    }
+    return R;
+  }
 }
 
 export { DiGraph };

@@ -45,4 +45,48 @@ class Value {
     this.value = value;
   }
 }
-export { Key, Value };
+
+class Queue<T> {
+  private array: T[];
+
+  public constructor() {
+    this.array = [];
+  }
+
+  public enqueue(value: T) {
+    this.array.push(value);
+  }
+
+  public dequeue() {
+    return this.array.shift();
+  }
+
+  public length(): number {
+    return this.array.length;
+  }
+}
+
+class Stack<T> {
+  public forEach: (callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any) => void;
+
+  private array: T[];
+
+  public constructor() {
+    this.array = [];
+    this.forEach = this.array.forEach;
+  }
+
+  public push(value: T) {
+    this.array.push(value);
+  }
+
+  public pop() {
+    this.array.pop();
+  }
+
+  public length(): number {
+    return this.array.length;
+  }
+}
+
+export { Key, Value, Queue, Stack };

@@ -11,6 +11,12 @@ class CC {
     this.marked = new Array(G.V());
     this._id = new Array(G.V());
     this._count = 0;
+    for (let i = 0; i < G.V(); i++) {
+      if (!this.marked[i]) {
+        this.dfs(G, i);
+        this._count++;
+      }
+    }
   }
 
   /**
