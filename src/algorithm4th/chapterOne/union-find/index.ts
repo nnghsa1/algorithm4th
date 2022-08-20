@@ -1,8 +1,10 @@
 class QuickFind {
   public id: any[];
+
   public constructor(id: any[]) {
     this.id = id;
   }
+
   public find(p: number) {
     return this.id[p];
   }
@@ -25,9 +27,11 @@ class QuickFind {
 
 class QuickUnion {
   public id: any[];
+
   public constructor(id: any[]) {
     this.id = id;
   }
+
   public union(p: number, q: number) {
     const pRoot = this.find(p);
     const qRoot = this.find(q);
@@ -52,6 +56,7 @@ class QuickUnion {
  */
 class WeightQuickUnion extends QuickUnion {
   public size: any[];
+
   public constructor(id: any[]) {
     super(id);
     this.size = [];
@@ -59,6 +64,7 @@ class WeightQuickUnion extends QuickUnion {
       this.size.push(1);
     });
   }
+
   public union(p: number, q: number) {
     const i = this.find(p);
     const j = this.find(q);
@@ -80,6 +86,7 @@ class WeightQuickUnion extends QuickUnion {
  */
 class PathCompressWeightQuickUinon extends WeightQuickUnion {
   public root: any[];
+
   public constructor(id: any) {
     super(id);
     this.root = [];
@@ -104,11 +111,17 @@ class PathCompressWeightQuickUinon extends WeightQuickUnion {
 
 export default class UF {
   public _id: any[];
+
   public quickFind: QuickFind | undefined;
+
   public quickUnion: QuickFind | undefined;
+
   public weightQuickUnion: QuickFind | undefined;
+
   public pathCompressWeightQuickUinon: PathCompressWeightQuickUinon | undefined;
+
   private _count: number;
+
   public constructor(num: number) {
     this._id = [];
     this._count = 0;
@@ -120,9 +133,7 @@ export default class UF {
     // this.quickFind = new QuickFind(this._id);
     // this.quickUnion = new QuickUnion(this._id);
     // this.weightQuickUnion = new WeightQuickUnion(this._id);
-    this.pathCompressWeightQuickUinon = new PathCompressWeightQuickUinon(
-      this._id,
-    );
+    this.pathCompressWeightQuickUinon = new PathCompressWeightQuickUinon(this._id);
   }
 
   /**
@@ -209,7 +220,7 @@ const getParams = (i: number) => {
       continue;
     }
     uf.unoin(p, q);
-    console.log(q, "-", p);
+    console.log(q, '-', p);
   }
 
   console.log(uf.getIds());
@@ -218,8 +229,8 @@ const getParams = (i: number) => {
     test2 = 4;
   const res = uf.connected(test1, test2);
   if (res) {
-    console.log("相通");
+    console.log('相通');
   } else {
-    console.log("不相通");
+    console.log('不相通');
   }
 })();

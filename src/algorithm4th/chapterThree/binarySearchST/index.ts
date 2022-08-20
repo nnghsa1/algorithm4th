@@ -1,5 +1,6 @@
 class BinarySearchST {
   private keys: any[];
+  
   private values: any[];
 
   public constructor(capacity = 0) {

@@ -1,3 +1,4 @@
+
 class Key {
   public key: string;
 
@@ -64,6 +65,10 @@ class Queue<T> {
   public length(): number {
     return this.array.length;
   }
+
+  public isEmpty(): boolean {
+    return this.array.length === 0;
+  }
 }
 
 class Stack<T> {
@@ -87,6 +92,49 @@ class Stack<T> {
   public length(): number {
     return this.array.length;
   }
+
+  public isEmpty(): boolean {
+    return this.array.length === 0;
+  }
 }
 
-export { Key, Value, Queue, Stack };
+class Bag<T> {
+  private array: T[];
+
+  public constructor() {
+    this.array = [];
+    this.forEach = this.array.forEach;
+  }
+
+  public add(value: T) {
+    this.array.push(value);
+  }
+
+  public length(): number {
+    return this.array.length;
+  }
+
+  public isEmpty(): boolean {
+    return this.array.length === 0;
+  }
+
+  public forEach(cb: (value: T, index: number, array: T[]) => void) {
+    this.array.forEach(cb);
+  }
+}
+
+interface IComparable<T> {
+  compareTo: (that: T) => number;
+}
+
+export { 
+  Key, 
+  Value, 
+  Queue, 
+  Stack,
+  Bag,
+};
+
+export type {
+  IComparable,
+};

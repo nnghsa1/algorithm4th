@@ -12,7 +12,9 @@ interface PriorityQueue {
 
 class MaxPQ extends BaseSort implements PriorityQueue {
   private pq: any[];
+  
   private N: number;
+
   public constructor() {
     super();
     this.pq = [];
@@ -73,10 +75,76 @@ class MaxPQ extends BaseSort implements PriorityQueue {
   }
 }
 
+class MinPQ<T> extends BaseSort {
+  private pq: T[];
+  
+  private N: number;
+
+  public constructor() {
+    super();
+    this.pq = [];
+    this.N = 0;
+  }
+
+  public isEmpty() {
+    return this.N === 0;
+  }
+
+  public size() {
+    return this.N;
+  }
+
+  public insert(v: any): void {
+    this.pq[this.N] = v;
+    this.swim(this.N);
+    this.N++;
+  }
+
+  public delMin() {
+    const min = this.pq[0];
+    this.exch(this.pq, 0, this.N--);
+    this.pq.pop();
+    this.sink(0);
+    return min;
+  }
+
+  public gt(a: number, b: number) {
+    return this.pq[a] > this.pq[b];
+  }
+
+  public getPQ() {
+    return this.pq;
+  }
+
+  private swim(k: number) {
+    let index = k;
+    while (index > 0 && this.gt(Math.floor((index - 1) / 2), index)) {
+      this.exch(this.pq, Math.floor((index - 1) / 2), index);
+      index = Math.floor((index - 1) / 2);
+    }
+  }
+
+  private sink(k: number) {
+    let index = k;
+    while (2 * index + 1 < this.N) {
+      let j = 2 * index + 1;
+      if (j < this.N && this.gt(j, j + 1)) {
+        j++;
+      }
+      if (this.gt(index, j)) {
+        break;
+      }
+      this.exch(this.pq, index, j);
+      index = j;
+    }
+  }
+}
+
 class HeapSort extends BaseSort {
   public constructor() {
     super();
   }
+
   public sort(a: any[]) {
     // 1. 先构建一个大根堆
     const maxHeap = this.buildMaxHeap(a);
@@ -122,4 +190,4 @@ class HeapSort extends BaseSort {
   }
 }
 
-export { MaxPQ, HeapSort };
+export { MaxPQ, MinPQ, HeapSort };
